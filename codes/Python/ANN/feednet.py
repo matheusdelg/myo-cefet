@@ -19,7 +19,7 @@ def main (arg1, arg2):
    (nData, dSize) = data.shape
 
    # Entrada: media (mean),
-   #          dp (sd),
+   #          desvio padrao (sd),
    #          RMS (rms),
    #          maximo absoluto (peak),
    #          ativacao (ativ)   
