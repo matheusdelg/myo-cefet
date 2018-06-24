@@ -29,7 +29,6 @@ v_exp = matrix [22:24,     0] / 2;
 v_ord = matrix [22:24,  9:17] / 8;
 v_sta = matrix [22:24, 17:25];
 
-
 specs = {
          'nInputs'  : 8,
 	 'nOutputs' : 1,
@@ -49,16 +48,21 @@ nn_ord.train (t_ord, t_exp);
 #nn_sta.train (t_sta, t_exp);
 
 print "ACT: Calculado: ", nn_act.test (np.reshape (v_act[0], (1, 8))), "Esperado: ", v_exp[0];
-print "ORD: Calculado: ", nn_ord.test (np.reshape (v_act[0], (1, 8))), "Esperado: ", v_exp[0];
+print "ORD: Calculado: ", nn_ord.test (np.reshape (v_ord[0], (1, 8))), "Esperado: ", v_exp[0];
 #print "STA: Calculado: ", nn_sta.test (np.reshape (v_act[0], (1, 8))), "Esperado: ", v_exp[0];
 
 print "ACT: Calculado: ", nn_act.test (np.reshape (v_act[1], (1, 8))), "Esperado: ", v_exp[1];
-print "ORD: Calculado: ", nn_ord.test (np.reshape (v_act[1], (1, 8))), "Esperado: ", v_exp[1];
+print "ORD: Calculado: ", nn_ord.test (np.reshape (v_ord[1], (1, 8))), "Esperado: ", v_exp[1];
 #print "STA: Calculado: ", nn_sta.test (np.reshape (v_act[1], (1, 8))), "Esperado: ", v_exp[1];
+
+print
+print "ACT: erro = ", nn_act.erro();
+print "ORD: erro = ", nn_ord.erro();
+#print "STA: erro = ", nn_sta.erro();
 
 op = input ("Salvar pesos? (1/0)")
 
 if (op == 1):
    nn_act.exportW ('act.w');
    nn_ord.exportW ('ord.w');
-   nn_sta.exportW ('sta.w');
+   #nn_sta.exportW ('sta.w');
