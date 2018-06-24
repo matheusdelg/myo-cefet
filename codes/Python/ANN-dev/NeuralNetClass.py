@@ -1,5 +1,6 @@
 import numpy as np
 import neurolab as nl
+import os.path as check
 
 class NeuralNet:
 
@@ -25,14 +26,15 @@ class NeuralNet:
           self.fout = specs ['fout']
 
    def importW (self, fin):
- 	self.nn = nl.load (fin)
+        if check.isfile (fin):
+ 	   self.nn = nl.load (fin)
 
    def exportW (self, fout):
         self.nn.save (fout)
 
    def train (self, inp, out):
        self.err = np.array (self.nn.train (inp,
-			    out, epochs = 3e5,
-                            goal = 1e-2, show = 1e2))
+			    out, epochs = 3e4,
+                            goal = 1e-2, show = 5e2))
    def test (self, inp):
        return self.nn.sim (inp)
